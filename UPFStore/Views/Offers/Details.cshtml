@@ -1,0 +1,51 @@
+﻿@model UPFStore.Models.Offer
+
+@{
+    ViewBag.Title = "Offer";
+}
+
+<div>
+    <h4>Offer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dd>
+            <div class="row">
+                @foreach (var picture in Model.OfferImages)
+                {
+                    <div class="col-md-4">
+                        <img src="@($"/Images/{picture.Path}")" alt="Alternate Text" class="img-thumbnail" />
+                </div>
+                }
+            </div>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
