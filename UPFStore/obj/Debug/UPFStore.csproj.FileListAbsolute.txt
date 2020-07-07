@@ -102,6 +102,5 @@ C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.csproj.Core
 C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.csproj.CopyComplete
 C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.dll
 C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.pdb
-C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.csprojAssemblyReference.cache
-C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.Migrations.Initial.resources
+C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.Migrations.Init.resources
 C:\Users\badin\source\repos\AouraghStore\UPFStore\obj\Debug\UPFStore.csproj.GenerateResource.cache

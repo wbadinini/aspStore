@@ -5,40 +5,29 @@
 }
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-success pull-right"})
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
 
+<div class="row">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
+        var imagePath = item.OfferImages.FirstOrDefault() != null 
+            ? $"/Images/{item.OfferImages.FirstOrDefault()?.Path}"
+            : "";
+
+        <div class="col-md-4">
+            <img class="img-thumbnail" src="@(imagePath)" alt="Image de produit">
+            <div class="text-center">
+                <h5 class="card-title">@item.Price</h5>
+                <p class="card-text">
+                    @item.Description
+                </p>
+            </div>
+            <div class="text-center">
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+            </div>
+        </div>
     }
-
-</table>
+</div>

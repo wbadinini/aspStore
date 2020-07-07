@@ -169,19 +169,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="AspNetRole.cs" />
-    <Compile Include="AspNetUser.cs" />
-    <Compile Include="AspNetUserClaim.cs" />
-    <Compile Include="AspNetUserLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OffersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007071114253_Initial.cs" />
-    <Compile Include="Migrations\202007071114253_Initial.Designer.cs">
-      <DependentUpon>202007071114253_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202007072209003_Init.cs" />
+    <Compile Include="Migrations\202007072209003_Init.Designer.cs">
+      <DependentUpon>202007072209003_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -203,6 +199,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\55563aba-4a5d-4620-92bd-f0c934ea4ced.png" />
+    <Content Include="Images\798f179f-99b5-4e2b-9351-7768a3b8ce29.png" />
+    <Content Include="Images\82688dcc-1611-41f6-93ed-2c6afe121064.png" />
+    <Content Include="Images\banner.jpg" />
+    <Content Include="Images\c4b499b2-71b4-4f6d-9b2e-448c9e27c409.png" />
+    <Content Include="Images\d3ed47fe-b9f4-425e-bcae-c19ef486ec91.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -227,8 +229,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -258,8 +258,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007071114253_Initial.resx">
-      <DependentUpon>202007071114253_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007072209003_Init.resx">
+      <DependentUpon>202007072209003_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

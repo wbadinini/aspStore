@@ -9,23 +9,29 @@ using System.Web;
 using System.Web.Mvc;
 using AouraghStore;
 using AouraghStore.Models;
+using Microsoft.AspNet.Identity;
 using UPFStore;
 using UPFStore.Models;
 
 namespace AouraghStore.Controllers
 {
+    [Authorize]
     public class OffersController : Controller
     {
         private UPFStoreModel db = new UPFStoreModel();
 
-        // GET: Offers
         public ActionResult Index()
         {
-            return View(db.Offers.ToList());
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            var currentUserOffers = db.Offers
+                .Where(o => o.CreatedBy == userId)
+                .ToList();
+
+            return View(currentUserOffers);
         }
 
-        // GET: Offers/Details/5
-        public ActionResult Details(long? id)
+        public ActionResult Details(long? id, string mode = "")
         {
             if (id == null)
             {
@@ -36,18 +42,16 @@ namespace AouraghStore.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.readOnly = mode == "readOnly";
             return View(offer);
         }
 
-        // GET: Offers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Offers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Price,Title,Description")] Offer offer, HttpPostedFileBase[] pictures)
@@ -65,7 +69,7 @@ namespace AouraghStore.Controllers
                             Directory.CreateDirectory(HttpContext.Server.MapPath("~/Images/"));
                         }
 
-                        var fileName = $"{Guid.NewGuid()}.{picture.FileName.Split('.')[1]}";
+                        var fileName = $"{Guid.NewGuid()}.{picture.FileName.Split('.').Last()}";
                         picture.SaveAs(HttpContext.Server.MapPath("~/Images/") + fileName);
 
                         offer.OfferImages.Add(new OfferImage()
@@ -76,6 +80,7 @@ namespace AouraghStore.Controllers
 
                 }
 
+                offer.CreatedBy = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 db.Offers.Add(offer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,7 +89,6 @@ namespace AouraghStore.Controllers
             return View(offer);
         }
 
-        // GET: Offers/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -99,9 +103,6 @@ namespace AouraghStore.Controllers
             return View("Create", offer);
         }
 
-        // POST: Offers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Price,Title,Description")] Offer offer)
@@ -115,7 +116,6 @@ namespace AouraghStore.Controllers
             return View(offer);
         }
 
-        // GET: Offers/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -130,7 +130,6 @@ namespace AouraghStore.Controllers
             return View(offer);
         }
 
-        // POST: Offers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
@@ -139,15 +138,6 @@ namespace AouraghStore.Controllers
             db.Offers.Remove(offer);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
